@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative "../lib/nyc_bridge_and_tunnel_fees"
+
+NycBridgeAndTunnelFees::CLI.new.call

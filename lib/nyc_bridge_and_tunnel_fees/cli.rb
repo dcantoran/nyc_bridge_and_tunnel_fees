@@ -44,14 +44,16 @@ class NycBridgeAndTunnelFees::CLI
 
     def list_bridges
       # I want to puts the list out in alphabetical order.
-      @bridges.sort.each_with_index {|month, idx| puts "#{idx + 1}. #{month}"}
+      @bridges.sort.each_with_index {|month, idx| puts "\n#{idx + 1}. #{month}\n"}
     end
 
     def get_user_bridge
       chosen_bridge = gets.strip.to_i
-      binding.pry
-    #   if chosen_bridge.to_i == chosen_bridge
+      
+      NycBridgeAndTunnelFees::Bridge.all.each.with_index(1) do |bridge|
+         puts bridge
+         binding.pry
+      end 
 
-    #   end
     end 
 end

@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-class Scraper 
+class NycBridgeAndTunnelFees::Scraper 
 
   site = "https://tollguru.com/toll-info/new-york/toll-rates-for-new-york-bridges-and-tunnels"
 

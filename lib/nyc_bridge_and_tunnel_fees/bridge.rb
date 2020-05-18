@@ -1,7 +1,7 @@
 class NycBridgeAndTunnelFees::Bridge 
   attr_accessor :name
   
-  @@all = []
+  @@all = ['a','b','c']
 
 #   def initialize 
     

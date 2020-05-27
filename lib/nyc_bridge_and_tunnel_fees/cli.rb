@@ -1,6 +1,5 @@
 class NycBridgeAndTunnelFees::CLI 
     def call 
-        puts "\nWelcome to NYC Bridges and Tunnels!\n"
         get_bridges
         list_bridges
         get_user_bridge
@@ -16,6 +15,7 @@ class NycBridgeAndTunnelFees::CLI
 
     def list_bridges
       # I want to puts the list out in alphabetical order.
+      puts "\nWelcome to NYC Bridges and Tunnels!"
       puts "\nWhich bridge or tunnel would you like more info on?\n"
       @bridges.each_with_index {|month, idx| puts "\n#{idx + 1}. #{month.name}\n"}
     end

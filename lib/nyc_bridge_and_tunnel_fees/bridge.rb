@@ -9,8 +9,13 @@ class NycBridgeAndTunnelFees::Bridge
   end 
   
   def self.all 
-     @@all 
-   end 
+    @@all 
+  end
+  
+  def self.create 
+    html = NycBridgeAndTunnelFees::Scraper.scrape_page
+    binding.pry
+  end  
 
   def save 
     @@all << self 

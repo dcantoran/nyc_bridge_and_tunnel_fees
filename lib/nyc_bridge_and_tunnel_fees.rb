@@ -5,7 +5,7 @@ require_relative "./nyc_bridge_and_tunnel_fees/bridge"
 
 require "pry"
 require 'nokogiri'
-# require 'open-uri'
+require 'open-uri'
 
 module NycBridgeAndTunnelFees
   class Error < StandardError; end

@@ -1,6 +1,3 @@
-Hello World!
-This <-- Written at 1:17
-
 # NycBridgeAndTunnelFees
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nyc_bridge_and_tunnel_fees`. To experiment with that code, run `bin/console` for an interactive prompt.

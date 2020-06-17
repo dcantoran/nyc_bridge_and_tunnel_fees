@@ -30,7 +30,7 @@ class NycBridgeAndTunnelFees::Bridge
         bridge.ezpass_price = b.css("td:nth-child(2)").text.strip
         bridge.cash_price = b.css("td:nth-child(3)").text.strip
         bridge.mail_price = b.css("td:nth-child(4)").text.strip
-        binding.pry 
+        # binding.pry 
     end 
 
   end 

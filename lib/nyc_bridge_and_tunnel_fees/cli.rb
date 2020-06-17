@@ -27,7 +27,10 @@ class NycBridgeAndTunnelFees::CLI
         input = gets.strip.downcase
 
         if input.to_i > 0
-            puts "The toll amount for this bridge is: #{@bridges[input.to_i - 1]}"
+            puts "\nFor bridge or tunnel: #{@bridges[input.to_i - 1].name}"
+            puts "\nThe toll amount for this bridge with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n"
+            puts "\nWith cash: #{@bridges[input.to_i - 1].cash_price}\n"
+            puts "\nVideo Toll by Mail: #{@bridges[input.to_i - 1].mail_price}"
         elsif input == "list"
             list_bridges
         end 

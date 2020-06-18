@@ -12,9 +12,11 @@ class NycBridgeAndTunnelFees::CLI
     end 
 
     def list_bridges
-      puts "\nWhich bridge or tunnel would you like more info on?\n"
+      sleep(1)
+      puts "\nWhat bridge or tunnel would you like more info on? Please enter a number from 1-31.\n"
+      sleep(3)
       NycBridgeAndTunnelFees::Bridge.create
-    #   @b_and_t = @bridges.each_with_index {|month, idx| puts "\n#{idx + 1}. #{month.name}\n"}
+      @bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"}
     end
 
     def get_user_bridge
@@ -23,16 +25,22 @@ class NycBridgeAndTunnelFees::CLI
 
       input = nil 
       while input != "exit"
-        puts "\nEnter number of bridge you'd like more info on or type exit"
         input = gets.strip.downcase
-
-        if input.to_i > 0
-            puts "\nFor bridge or tunnel: #{@bridges[input.to_i - 1].name}"
-            puts "\nThe toll amount for this bridge with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n"
-            puts "\nWith cash: #{@bridges[input.to_i - 1].cash_price}\n"
-            puts "\nVideo Toll by Mail: #{@bridges[input.to_i - 1].mail_price}"
+        
+        if input.to_i > 0 && input.to_i < 31
+          puts "\nFor bridge or tunnel: #{@bridges[input.to_i - 1].name}"
+          sleep(1)
+          puts "\nThe toll amount for this bridge with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n"
+          sleep(1)
+          puts "\nWith cash: #{@bridges[input.to_i - 1].cash_price}\n"
+          sleep(1)
+          puts "\nVideo Toll by Mail: #{@bridges[input.to_i - 1].mail_price}"
+          puts "\nType list to see the bridge/tunnel menu again or type exit to close the app"
         elsif input == "list"
-            list_bridges
+          # list_bridges
+          @bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"}
+        elsif input.to_i < 1 || input.to_i > 31
+          puts "\nPlease choose a number from 1-31, to see the menu again type list or to close the app type exit."
         end 
       end 
     end 

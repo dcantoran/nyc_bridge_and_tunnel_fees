@@ -28,9 +28,9 @@ class NycBridgeAndTunnelFees::CLI
         input = gets.strip.downcase
         
         if input.to_i > 0 && input.to_i < 31
-          puts "\nFor bridge or tunnel: #{@bridges[input.to_i - 1].name}"
+          puts "\n--------- #{@bridges[input.to_i - 1].name} -----------"
           sleep(1)
-          puts "\nThe toll amount for this bridge with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n"
+          puts "\nThe toll amount for the #{@bridges[input.to_i - 1].name} with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n"
           sleep(1)
           puts "\nWith cash: #{@bridges[input.to_i - 1].cash_price}\n"
           sleep(1)

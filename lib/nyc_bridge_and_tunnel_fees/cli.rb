@@ -1,6 +1,6 @@
 class NycBridgeAndTunnelFees::CLI 
     def call 
-        puts "\nWelcome to NYC Bridge and Tunnel Fees!\n" # <- Puts out the welcome message
+        puts "\nWelcome to New York's Bridge and Tunnel Fees!\n" # <- Puts out the welcome message
         get_bridges                                       # <- Calling #get_bridges method
         list_bridges                                      # <- Second, calling #list_bridges for user to see list menu
         get_user_bridge                                   # <- Third, call #get_user_bridge to record users selection
@@ -14,21 +14,20 @@ class NycBridgeAndTunnelFees::CLI
     def list_bridges
       sleep(1)                                            # <- Pause output for one second, better user experience
       puts "\nWhat bridge or tunnel would you like more info on? Please enter a number from 1-31.\n" 
-      sleep(3)                                            # <- Pause before bridge list prints to give user time to read question above
+      sleep(1)                                            # <- Pause before bridge list prints to give user time to read question above
       
-      # NycBridgeAndTunnelFees::Bridge.sort_list
       NycBridgeAndTunnelFees::Bridge.create               # <- Scrapes or persists bridge css text into Bridge self.all
       @bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"} # puts #bridge list with idx (+ 1 because self.all
     end                                                                              # array starts at 0) and name
 
     def get_user_bridge
 
-      input = nil                                         # <- ?
+      input = nil                                       
       while input != "exit"                               # <- loop as long as input != "exit", but when "exit" loop exits
         input = gets.strip.downcase                       # <- grab user input and lowercase to eliminate text sensitivity errors
         
         if input.to_i > 0 && input.to_i <= 31             #<- as long as user input.to_i > 0 and input.to_i <= 31 resume conditional
-          puts "\n---------- #{@bridges[input.to_i - 1].name} ----------" # puts bridge name, input.to_i to convert user input to integer and (-1) bc when I type "1" in array I need it to equal 0.
+          puts "\n---------------------------------------- #{@bridges[input.to_i - 1].name} ----------------------------------------" # puts bridge name, input.to_i to convert user input to integer and (-1) bc when I type "1" in array I need it to equal 0.
           sleep(1)
           puts "\nThe toll amount for the #{@bridges[input.to_i - 1].name} with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n" # puts ex-pass prices
           sleep(1)
@@ -46,6 +45,6 @@ class NycBridgeAndTunnelFees::CLI
     end 
 
     def goodbye 
-        puts "\nYou've now exited NYC Bridge Fees. See you next time!" # <- Exit message
+        puts "\nYou've now exited NYC Bridge Fees. See you next time!" 
     end
 end

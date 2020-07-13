@@ -16,7 +16,7 @@ class NycBridgeAndTunnelFees::CLI
       puts "\nWhat bridge or tunnel would you like more info on? Please enter a number from 1-31.\n" 
       sleep(1)                                            # <- Pause before bridge list prints to give user time to read question above
       
-      NycBridgeAndTunnelFees::Bridge.create               # <- Scrapes or persists bridge css text into Bridge self.all
+      NycBridgeAndTunnelFees::Scraper.create               # <- Scrapes or persists bridge css text into Bridge self.all
       @bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"} # puts #bridge list with idx (+ 1 because self.all
     end                                                                              # array starts at 0) and name
 
@@ -26,7 +26,7 @@ class NycBridgeAndTunnelFees::CLI
       while input != "exit"                               # <- loop as long as input != "exit", but when "exit" loop exits
         input = gets.strip.downcase                       # <- grab user input and lowercase to eliminate text sensitivity errors
         
-        if input.to_i > 0 && input.to_i <= 31             #<- as long as user input.to_i > 0 and input.to_i <= 31 resume conditional
+        if input.to_i > 0 && input.to_i <= @bridges.length            #<- as long as user input.to_i > 0 and input.to_i <= 31 resume conditional
           puts "\n---------------------------------------- #{@bridges[input.to_i - 1].name} ----------------------------------------" # puts bridge name, input.to_i to convert user input to integer and (-1) bc when I type "1" in array I need it to equal 0.
           sleep(1)
           puts "\nThe toll amount for the #{@bridges[input.to_i - 1].name} with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n" # puts ex-pass prices
@@ -48,3 +48,4 @@ class NycBridgeAndTunnelFees::CLI
         puts "\nYou've now exited NYC Bridge Fees. See you next time!" 
     end
 end
+

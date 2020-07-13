@@ -4,6 +4,8 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
+NYC Bridge and Tunnel Fees is a gem that can be used to find the toll prices of a particular bridge or tunnel in New York. A user receives a greeting message asking him/her to make a selection out of a list of 31 bridges. Next the price of the tolls is printed out for the chosen bridge. Afterwards, the user is asked if he/she would like to view the list again or exit the app. If the user chooses to view the list again, the bridge/tunnel list is printed out again and the user can select another bridge. Once the user is finished with the app he/she can simply type exit to close the app.
+
 ## Installation
 
 Add this line to your application's Gemfile:

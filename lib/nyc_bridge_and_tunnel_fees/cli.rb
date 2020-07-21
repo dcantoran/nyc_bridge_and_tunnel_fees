@@ -16,8 +16,9 @@ class NycBridgeAndTunnelFees::CLI
       puts "\nWhat bridge or tunnel would you like more info on? Please enter a number from 1-31.\n" 
       sleep(1)                                            # <- Pause before bridge list prints to give user time to read question above
       
-      NycBridgeAndTunnelFees::Scraper.create               # <- Scrapes or persists bridge css text into Bridge self.all
-      @bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"} # puts #bridge list with idx (+ 1 because self.all
+      NycBridgeAndTunnelFees::Scraper.create
+      @sorted_bridges = @bridges.sort_by {|bridge| bridge.name}             # <- Scrapes or persists bridge css text into Bridge self.all
+      @sorted_bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"} # puts #bridge list with idx (+ 1 because self.all
     end                                                                              # array starts at 0) and name
 
     def get_user_bridge
@@ -26,18 +27,18 @@ class NycBridgeAndTunnelFees::CLI
       while input != "exit"                               # <- loop as long as input != "exit", but when "exit" loop exits
         input = gets.strip.downcase                       # <- grab user input and lowercase to eliminate text sensitivity errors
         
-        if input.to_i > 0 && input.to_i <= @bridges.length            #<- as long as user input.to_i > 0 and input.to_i <= 31 resume conditional
-          puts "\n---------------------------------------- #{@bridges[input.to_i - 1].name} ----------------------------------------" # puts bridge name, input.to_i to convert user input to integer and (-1) bc when I type "1" in array I need it to equal 0.
+        if input.to_i > 0 && input.to_i <= @sorted_bridges.length            #<- as long as user input.to_i > 0 and input.to_i <= 31 resume conditional
+          puts "\n---------------------------------------- #{@sorted_bridges[input.to_i - 1].name} ----------------------------------------" # puts bridge name, input.to_i to convert user input to integer and (-1) bc when I type "1" in array I need it to equal 0.
           sleep(1)
-          puts "\nThe toll amount for the #{@bridges[input.to_i - 1].name} with EZ-Pass is: #{@bridges[input.to_i - 1].ezpass_price}\n" # puts ex-pass prices
+          puts "\nThe toll amount for the #{@sorted_bridges[input.to_i - 1].name} with EZ-Pass is: #{@sorted_bridges[input.to_i - 1].ezpass_price}\n" # puts ex-pass prices
           sleep(1)
-          puts "\nWith cash: #{@bridges[input.to_i - 1].cash_price}\n"        # puts cash prices
+          puts "\nWith cash: #{@sorted_bridges[input.to_i - 1].cash_price}\n"        # puts cash prices
           sleep(1)
-          puts "\nVideo Toll by Mail: #{@bridges[input.to_i - 1].mail_price}" # puts toll by mail price
+          puts "\nVideo Toll by Mail: #{@sorted_bridges[input.to_i - 1].mail_price}" # puts toll by mail price
           puts "\nType list to see the bridge/tunnel menu again or type exit to close the app" # instructions to see menu or exit
         elsif input == "list"  # When user types list it'll list out the bridge menu again.
           # list_bridges
-          @bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"}
+          @sorted_bridges.each_with_index {|bridge, idx| puts "\n#{idx + 1}. #{bridge.name}\n"}
         elsif input.to_i < 1 || input.to_i > 31 # if user enters a number < 1 or > 31 or types any other string other than "list" or "exit" they receive this instructional message
           puts "\nPlease choose a number from 1-31, to see the menu again type list or to close the app type exit."
         end 

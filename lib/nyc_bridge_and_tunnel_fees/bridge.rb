@@ -4,11 +4,6 @@ class NycBridgeAndTunnelFees::Bridge
   @@all = []                                                   # <- array to store instances of bridge objects
 
   def initialize          
-    @name = name
-    @ezpass_price = ezpass_price
-    @cash_price = cash_price
-    @mail_price = mail_price
-
     save
   end 
   
